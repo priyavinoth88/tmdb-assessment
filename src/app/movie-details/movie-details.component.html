@@ -1,0 +1,59 @@
+<div>
+    <mat-progress-bar *ngIf="!movie" color="primary" mode="indeterminate">
+    </mat-progress-bar>
+    <div
+      *ngIf="movie"
+      class="movie-expo"
+      [style.background-image]=imageurl
+    >
+      <div class="movie-head">
+        <h2 class="mat-h2">
+          <button
+            mat-icon-button
+            class="btn-back"
+            (click)="back()"
+            aria-label="back"
+          >
+            <mat-icon>arrow_back</mat-icon>
+          </button>
+          {{ movie.title }}
+        </h2>
+        <p class="movie-info">
+          <mat-icon>date_range</mat-icon> {{ movie.release_date | date: "y" }} •
+          <mat-icon>timer</mat-icon> {{ movie.runtime }} minutes •
+          <mat-icon
+            [ngClass]="{
+              'mat-green': movie.vote_average >= 5,
+              'mat-red': movie.vote_average < 5
+            }"
+            >star</mat-icon
+          >
+          {{ movie.vote_average }}
+        </p>
+      </div>
+    </div>
+    <div *ngIf="movie" class="movie-details">
+  
+          <p>{{ movie.overview }}</p>
+  
+          <mat-chip-list>
+            <mat-chip *ngFor="let genre of movie.genres">{{
+              genre.name
+            }}</mat-chip>
+          </mat-chip-list>
+          <h4>Casting</h4>
+          <mat-card class="cast-list" *ngFor="let cast of movie.cast">
+            <mat-card-header>
+              <div
+                mat-card-avatar
+                [style.background-image]="'url(' + cast.imgUrl + ')'"
+                class="cast-header-image"
+              ></div>
+              <mat-card-title>{{ cast.name }}</mat-card-title>
+              <mat-card-subtitle>{{ cast.character }}</mat-card-subtitle>
+            </mat-card-header>
+          </mat-card>
+          <div class="clearfloat"></div>
+    </div>
+  </div>
+  

@@ -1,0 +1,30 @@
+
+<cdk-virtual-scroll-viewport itemSize="100" class="example-viewport">
+ <div class="main-content" *cdkVirtualFor="let movie of movies">
+     <mat-card class="example-card" (click)="goToMovieDetails(movie)">
+       <div *ngIf="movie.backdrop_path else defaultImg">
+       <img
+         mat-card-image
+         [src]="imgURL + movie.backdrop_path"
+         class="card-img"
+         [alt]="movie.title"
+       />
+       </div>
+       <ng-template #defaultImg>
+        <img
+         mat-card-image
+         [src]="placeholderImg"
+         class="card-img"
+         [alt]="movie.title"
+       />
+     </ng-template>
+       <mat-card-content>
+         <h3 class="ellipsis">{{ movie.title }}</h3>
+         <p>
+            {{movie.overview.substr(0, 100) + '...'}}
+         </p>
+       </mat-card-content>
+     </mat-card>
+   </div>
+  </cdk-virtual-scroll-viewport>
+  

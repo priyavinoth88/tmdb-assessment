@@ -1,0 +1,18 @@
+.card-img {
+    background-image: url(http://via.placeholder.com/500x281?text=Movies);
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover;
+  }
+  .example-viewport {
+    height: 500px;
+    width: 100%;
+  }
+  @media only screen and (min-width: 900px) {
+  ::ng-deep{
+    .cdk-virtual-scroll-content-wrapper {
+      display: grid;
+      grid-template-columns: 50% 50%;
+    }
+  }
+  }
